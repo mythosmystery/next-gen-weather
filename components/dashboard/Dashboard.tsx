@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import React from 'react';
 import { useQuery } from 'react-query';
 import { getForecast } from '../../utils/api';
@@ -32,8 +33,16 @@ export const Dashboard: React.FC<DashboardProps> = ({ coord }) => {
       <div className='lg:col-span-3 h-full flex flex-col gap-4'>
          <CurrentWeather current={data?.current as CurrentWeatherType} />
          <Forecast>
-            {data?.daily.map(obj => {
-               return <Forecast.Card key={obj.dt} weatherToday={obj}></Forecast.Card>;
+            {data?.daily.map((obj, i) => {
+               return (
+                  <motion.div
+                     initial={{ opacity: 0, translateY: 500 }}
+                     animate={{ opacity: 1, translateY: 0 }}
+                     transition={{ duration: 0.25, delay: i * 0.05 }}
+                     className='flex justify-center'>
+                     <Forecast.Card key={obj.dt} weatherToday={obj}></Forecast.Card>
+                  </motion.div>
+               );
             })}
          </Forecast>
       </div>
