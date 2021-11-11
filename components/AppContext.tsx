@@ -7,6 +7,7 @@ export type AppContextType = {
    toggleDark: () => void;
 
    city: string;
+   setCity: (city: string) => void;
    saveCity: (city: string) => void;
 
    savedCityList: string[];
@@ -19,6 +20,7 @@ const defaultContext = {
    toggleDark: () => {},
    city: '',
    saveCity: () => {},
+   setCity: () => {},
    savedCityList: [],
    setSavedCityList: () => {},
    currentDate: ''
@@ -49,7 +51,8 @@ export const AppContextProvider: FC = ({ children }) => {
    };
 
    return (
-      <AppContext.Provider value={{ dark, toggleDark, city, saveCity, savedCityList, setSavedCityList, currentDate }}>
+      <AppContext.Provider
+         value={{ dark, toggleDark, city, saveCity, setCity, savedCityList, setSavedCityList, currentDate }}>
          {children}
       </AppContext.Provider>
    );

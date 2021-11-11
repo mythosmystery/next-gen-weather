@@ -1,7 +1,40 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { CurrentWeatherType } from '../../utils/types';
+import { AppContext } from '../AppContext';
+import moment from 'moment';
+import { iconURL } from '../../utils/api';
 
-interface CurrentWeatherProps {}
+interface CurrentWeatherProps {
+   current: CurrentWeatherType;
+}
 
-export const CurrentWeather: React.FC<CurrentWeatherProps> = ({}) => {
-   return <div className='h-full w-full bg-gray-700 row-span-5'></div>;
+export const CurrentWeather: React.FC<CurrentWeatherProps> = ({ current }) => {
+   const { city } = useContext(AppContext);
+   return (
+      <div className=' dark:bg-gray-700 bg-gray-200 p-3 dark:text-gray-300 shadow-md'>
+         <h1 className='text-xl capitalize text-blue-500 dark:text-green-400 text-center border-b border-gray-600 pb-2'>
+            The Weather In {city}
+         </h1>
+         <div className='flex flex-col sm:flex-row gap-3 w-full p-2'>
+            <div className='flex flex-grow flex-col gap-4'>
+               <div>Temperature: {current?.temp}&deg;</div>
+               <div>Feels like: {current?.feels_like}&deg;</div>
+               <div>Humidity: {current?.humidity}%</div>
+               <div>Wind Speed: {current?.wind_speed} Mph</div>
+            </div>
+            <div className='flex flex-col flex-grow gap-4'>
+               <div>Sunrise: {moment.unix(current.sunrise).format('hh:mm a')}</div>
+               <div>Sunset: {moment.unix(current.sunset).format('hh:mm a')}</div>
+               <div>UVI: {current.uvi}</div>
+               <div>Air Pressure: {current.pressure}</div>
+            </div>
+            <div className='flex-grow flex flex-col gap-4'>
+               <img src={iconURL + current.weather[0].icon + '.png'} className='absolute top-2 right-10 h-16 w-16' />
+               <div>Dew Point: {current.dew_point}</div>
+               <div className='capitalize'>{current.weather[0].description}</div>
+               <div>Wind gusts: {current.wind_gust} Mph</div>
+            </div>
+         </div>
+      </div>
+   );
 };
