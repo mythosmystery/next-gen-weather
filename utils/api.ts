@@ -1,5 +1,5 @@
 const units = 'imperial';
-const key = '1b0d53466c6b55d0c85f1d56f3184390';
+const key = '9070db7d3bd1c053f1464efcd982545e';
 const apiURL = 'https://api.openweathermap.org/data/2.5/weather?q=';
 const onecallURL = 'https://api.openweathermap.org/data/2.5/onecall?lat=';
 
