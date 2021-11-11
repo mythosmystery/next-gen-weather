@@ -16,7 +16,7 @@ export const Card: React.FC<CardProps> = ({ weatherToday }) => {
             whileTap={{ rotate: 90 }}
             src={iconURL + weatherToday.weather[0].icon + '.png'}
          />
-         <div className='flex flex-row sm:flex-col py-1 justify-evenly'>
+         <div className='flex flex-row sm:flex-col pb-1 justify-evenly'>
             <div className='text-center'>
                <div className=''>Temp: {weatherToday.temp.day}&deg;</div>
                <div className='italic md:text-sm'>Feels like: {weatherToday.feels_like.day}</div>

@@ -37,7 +37,7 @@ export const AppContextProvider: FC = ({ children }) => {
 
    useEffect(() => {
       setSavedCityList(getSavedCities());
-      setCity(getStoredCity());
+      setCity(getStoredCity() ? getStoredCity() : 'New York');
       setDark(getStoredTheme());
    }, []);
 
