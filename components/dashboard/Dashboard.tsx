@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { AnimateSharedLayout, motion } from 'framer-motion';
 import React from 'react';
 import { useQuery } from 'react-query';
 import { getForecast } from '../../utils/api';
@@ -30,21 +30,24 @@ export const Dashboard: React.FC<DashboardProps> = ({ coord }) => {
    }
    console.log(data);
    return (
-      <div className='lg:col-span-3 h-full flex flex-col gap-4'>
-         <CurrentWeather current={data?.current as CurrentWeatherType} />
-         <Forecast>
-            {data?.daily.map((obj, i) => {
-               return (
-                  <motion.div
-                     initial={{ opacity: 0, translateY: 500 }}
-                     animate={{ opacity: 1, translateY: 0 }}
-                     transition={{ duration: 0.25, delay: i * 0.05 }}
-                     className='flex justify-center'>
-                     <Forecast.Card key={obj.dt} weatherToday={obj}></Forecast.Card>
-                  </motion.div>
-               );
-            })}
-         </Forecast>
-      </div>
+      <AnimateSharedLayout>
+         <div className='lg:col-span-3 h-full flex flex-col gap-4'>
+            <CurrentWeather current={data?.current as CurrentWeatherType} />
+            <Forecast>
+               {data?.daily.map((obj, i) => {
+                  return (
+                     <motion.div
+                        layout
+                        initial={{ opacity: 0, translateY: 500 }}
+                        animate={{ opacity: 1, translateY: 0 }}
+                        transition={{ duration: 0.5, delay: i * 0.05, type: 'spring', stiffness: 700, damping: 30 }}
+                        whileHover={{ scale: 1.05 }}>
+                        <Forecast.Card key={obj.dt} weatherToday={obj}></Forecast.Card>
+                     </motion.div>
+                  );
+               })}
+            </Forecast>
+         </div>
+      </AnimateSharedLayout>
    );
 };
