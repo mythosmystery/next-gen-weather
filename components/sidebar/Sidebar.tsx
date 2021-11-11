@@ -25,6 +25,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}) => {
                      exit={{ x: -400 }}
                      transition={{ duration: 0.15, delay: i * 0.03 }}
                      whileTap={{ scale: 1.1, borderRadius: 5 }}
+                     whileHover={{ scale: 1.02 }}
                      className='flex flex-row justify-evenly text-xl px-4 py-2 border-b dark:border-gray-600 dark:text-gray-300 capitalize hover:bg-gray-500 hover:cursor-pointer hover:text-gray-200'>
                      <div className='flex-grow' onClick={() => saveCity(city)}>
                         {city}
