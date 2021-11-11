@@ -12,6 +12,7 @@ export const SearchArea: React.FC<SearchAreaProps> = ({}) => {
       event.preventDefault();
       setCity(searchText);
       setSavedCityList(addCity(searchText));
+      setSearchText('');
    };
    const handleChange = ({ target }: any) => {
       setSearchText(target.value);

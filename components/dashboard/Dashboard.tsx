@@ -17,7 +17,12 @@ export const Dashboard: React.FC<DashboardProps> = ({ coord }) => {
    const { data, error, isFetching } = useQuery<ForecastType>(['current', coord.lon], () => getForecast(coord));
 
    if (error) {
-      return <h1>error</h1>;
+      return (
+         <>
+            <h1 className='absolute z-20 text-6xl text-gray-500 text-center w-full my-24 cursor-wait'>loading...</h1>
+            <div className='absolute z-0 top-0 lef-0 w-screen h-screen bg-gray-800 cursor-wait'></div>
+         </>
+      );
    }
    if (isFetching) {
       return <Loading />;
