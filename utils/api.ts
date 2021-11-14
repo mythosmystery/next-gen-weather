@@ -10,16 +10,15 @@ interface Coords {
    lon: number;
 }
 
-export const getCurrentWeather = async (city: string) => {
-   const res = await fetch(apiURL + city + '&appid=' + key + '&units=' + units);
-   if (!res.ok) throw new Error('Failed to fetch');
-   return res.json();
+export const getCurrentWeatherUrl = (city: string) => {
+   return apiURL + city + '&appid=' + key + '&units=' + units;
 };
 
-export const getForecast = async ({ lon, lat }: Coords) => {
-   const res = await fetch(
-      onecallURL + lat + '&lon=' + lon + '&exclude=hourly,minutely&units=' + units + '&appid=' + key
-   );
-   if (!res.ok) throw new Error('Failed to fetch');
-   return res.json();
+export const fetchCurrentWeather = async <Type>(city: string) => {
+   const data = await fetch(getCurrentWeatherUrl(city));
+   return (await data.json()) as Type;
+};
+
+export const getForecastUrl = ({ lon, lat }: Coords) => {
+   return onecallURL + lat + '&lon=' + lon + '&exclude=hourly,minutely&units=' + units + '&appid=' + key;
 };

@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { createContext, FC, useEffect, useState } from 'react';
+import { createContext, FC, useEffect, useMemo, useState } from 'react';
 import { getSavedCities, getStoredCity, getStoredTheme, setStoredCity, setStoredTheme } from '../utils/localStorage';
 
 export type AppContextType = {
@@ -35,12 +35,6 @@ export const AppContextProvider: FC = ({ children }) => {
    const [city, setCity] = useState('');
    const [savedCityList, setSavedCityList] = useState([] as string[]);
 
-   useEffect(() => {
-      setSavedCityList(getSavedCities());
-      setCity(getStoredCity() ? getStoredCity() : 'New York');
-      setDark(getStoredTheme());
-   }, []);
-
    const toggleDark = () => {
       setDark(!dark);
       setStoredTheme(!dark);
@@ -50,10 +44,25 @@ export const AppContextProvider: FC = ({ children }) => {
       setCity(city);
    };
 
-   return (
-      <AppContext.Provider
-         value={{ dark, toggleDark, city, saveCity, setCity, savedCityList, setSavedCityList, currentDate }}>
-         {children}
-      </AppContext.Provider>
+   const value = useMemo(
+      () => ({
+         dark,
+         toggleDark,
+         city,
+         setCity,
+         saveCity,
+         savedCityList,
+         setSavedCityList,
+         currentDate
+      }),
+      [dark, toggleDark, city, saveCity, savedCityList, setSavedCityList, currentDate]
    );
+
+   useEffect(() => {
+      setSavedCityList(getSavedCities());
+      setCity(getStoredCity() ? getStoredCity() : 'New York');
+      setDark(getStoredTheme());
+   }, []);
+
+   return <AppContext.Provider value={value as AppContextType}>{children}</AppContext.Provider>;
 };

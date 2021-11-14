@@ -10,7 +10,12 @@ interface SidebarProps {}
 export const Sidebar: React.FC<SidebarProps> = ({}) => {
    const { savedCityList, saveCity } = useContext(AppContext);
    return (
-      <div className='dark:bg-gray-700 bg-gray-200 h-full hidden lg:block shadow-lg z-30'>
+      <motion.div
+         initial={{ x: -500 }}
+         animate={{ x: 0 }}
+         exit={{ x: -500 }}
+         className='dark:bg-gray-700 bg-gray-200 h-full hidden lg:block shadow-lg z-30'
+      >
          <div className='flex justify-center mt-3 mb-1.5 dark:text-gray-500 w-full'>
             <FaSearch size='20' />
          </div>
@@ -26,7 +31,8 @@ export const Sidebar: React.FC<SidebarProps> = ({}) => {
                      transition={{ duration: 0.15, delay: i * 0.03 }}
                      whileTap={{ scale: 1.1, borderRadius: 5 }}
                      whileHover={{ scale: 1.02 }}
-                     className='flex flex-row justify-evenly text-xl px-4 py-2 border-b dark:border-gray-600 dark:text-gray-300 capitalize hover:bg-gray-500 hover:cursor-pointer hover:text-gray-200'>
+                     className='flex flex-row justify-evenly text-xl px-4 py-2 border-b dark:border-gray-600 dark:text-gray-300 capitalize hover:bg-gray-500 hover:cursor-pointer hover:text-gray-200'
+                  >
                      <div className='flex-grow' onClick={() => saveCity(city)}>
                         {city}
                      </div>
@@ -35,6 +41,6 @@ export const Sidebar: React.FC<SidebarProps> = ({}) => {
                );
             })}
          </AnimatePresence>
-      </div>
+      </motion.div>
    );
 };

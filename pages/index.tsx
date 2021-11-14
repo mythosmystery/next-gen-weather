@@ -1,13 +1,15 @@
 import Head from 'next/head';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { AppContext } from '../components/AppContext';
 import { Sidebar } from '../components/sidebar/Sidebar';
 import { FaSun, FaMoon } from 'react-icons/fa';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { CityQueryWrapper } from '../components/CityQueryWrapper';
+import { ModalBG } from '../components/searchModal/ModalBG';
 
 export default function Home() {
    const { dark, toggleDark } = useContext(AppContext);
+   const [showModal, setShowModal] = useState(true);
    return (
       <div className={dark ? 'dark' : ''}>
          <Head>
@@ -19,17 +21,22 @@ export default function Home() {
                initial={{ opacity: 0, rotate: 0 }}
                animate={{ opacity: 1 }}
                whileHover={{ scale: 1.2 }}
-               whileTap={{ scale: 1.5, rotate: 90 }}>
+               whileTap={{ scale: 1.5, rotate: 90 }}
+            >
                <button
                   onClick={() => toggleDark()}
-                  className='bg-blue-400 shadow-lg text-gray-900 dark:bg-green-500 p-2 m-1 rounded-full'>
+                  className='bg-blue-400 shadow-lg text-gray-900 dark:bg-green-500 p-2 m-1 rounded-full'
+               >
                   {dark ? <FaSun size='24' /> : <FaMoon size='24' />}
                </button>
             </motion.button>
          </div>
-         <div className='absolute z-30 overflow-y-scroll overscroll-x-contain grid grid-cols-1 lg:grid-cols-4 grid-flow-row h-screen w-full p-4 gap-4'>
-            <Sidebar />
-            <CityQueryWrapper />
+         <div className='absolute z-30 overflow-x-hidden grid grid-cols-1 lg:grid-cols-4 grid-flow-row h-screen w-full p-4 gap-4'>
+            <AnimatePresence exitBeforeEnter>
+               <Sidebar />
+               <CityQueryWrapper />
+               <ModalBG show={showModal} handleClose={() => setShowModal(false)} />
+            </AnimatePresence>
          </div>
          <div className='absolute z-0 w-screen h-screen top-0 lef-0 dark:bg-gray-800'></div>
       </div>
