@@ -18,6 +18,7 @@ export const Card: React.FC<CardProps> = ({ weatherToday, timezone }) => {
             src={iconURL + weatherToday.weather[0].icon + '.png'}
          />
          <div className='flex flex-row sm:flex-col pb-1 justify-evenly'>
+            <div className='text-center'>{moment.unix(weatherToday.dt).format('dddd')}</div>
             <div className='text-center'>
                <div className=''>High: {Math.round(weatherToday.temp.max)}&deg;</div>
                <div className=''>Low: {Math.round(weatherToday.temp.min)}&deg;</div>
@@ -25,12 +26,18 @@ export const Card: React.FC<CardProps> = ({ weatherToday, timezone }) => {
             </div>
             <div className='text-center'>
                <div className='md:text-sm capitalize'>{weatherToday.weather[0].description}</div>
-               <div className='md:text-sm'>
-                  Sunrise: {moment.unix(weatherToday.sunrise).tz(timezone).format('h:mm a')}
-               </div>
-               <div className='md:text-sm'>
-                  Sunset: {moment.unix(weatherToday.sunset).tz(timezone).format('h:mm a')}
-               </div>
+               {weatherToday.rain > 1 ? (
+                  <div className='md:text-sm'>Rain: {Math.round(weatherToday.rain)}%</div>
+               ) : (
+                  <>
+                     <div className='md:text-sm'>
+                        Sunrise: {moment.unix(weatherToday.sunrise).tz(timezone).format('h:mm a')}
+                     </div>
+                     <div className='md:text-sm'>
+                        Sunset: {moment.unix(weatherToday.sunset).tz(timezone).format('h:mm a')}
+                     </div>
+                  </>
+               )}
             </div>
          </div>
       </div>

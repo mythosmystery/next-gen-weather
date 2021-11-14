@@ -30,6 +30,9 @@ export const Dashboard: React.FC<DashboardProps> = ({ coord }) => {
       return <Loading />;
    }
    console.log(data);
+   data?.daily.shift();
+   data?.daily.pop();
+   data?.daily.pop();
    return (
       <AnimateSharedLayout>
          <motion.div

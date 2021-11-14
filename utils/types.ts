@@ -31,6 +31,7 @@ export type CoordQueryData = {
       sunset: number;
       type: number;
    };
+   message?: string;
    timezone: number;
    visibility: number;
    weather: {}[];
