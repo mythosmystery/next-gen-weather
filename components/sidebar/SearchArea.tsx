@@ -18,7 +18,7 @@ export const SearchArea: React.FC<SearchAreaProps> = ({ onBlur, onSubmitCallback
 
    const handleSubmit: FormEventHandler<HTMLFormElement> = event => {
       event.preventDefault();
-      setCity(searchText);
+      setCity(searchText.toLowerCase());
       setSavedCityList(addCity(searchText));
       setSearchText('');
       onSubmitCallback ? onSubmitCallback() : null;

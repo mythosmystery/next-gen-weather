@@ -31,7 +31,7 @@ export default function Home() {
                </button>
             </motion.button>
          </div>
-         <div className={'fixed z-50 top-1 right-1'}>
+         <div className={'fixed z-50 top-1 right-1 lg:hidden'}>
             <motion.button
                initial={{ opacity: 0, rotate: 0, y: -100 }}
                animate={{ opacity: 1, y: 0 }}
@@ -47,10 +47,10 @@ export default function Home() {
             </motion.button>
          </div>
          <div className='absolute z-30 overflow-x-hidden grid grid-cols-1 lg:grid-cols-4 grid-flow-row h-screen w-full p-4 gap-4'>
-            <AnimatePresence exitBeforeEnter>
-               <Sidebar />
-               <CityQueryWrapper />
-               <ModalBG show={showModal} handleClose={() => setShowModal(false)} />
+            <AnimatePresence>
+               <Sidebar key={1} />
+               <CityQueryWrapper key={2} />
+               <ModalBG key={3} show={showModal} handleClose={() => setShowModal(false)} />
             </AnimatePresence>
          </div>
          <div className='absolute z-0 w-screen h-screen top-0 lef-0 dark:bg-gray-800'></div>

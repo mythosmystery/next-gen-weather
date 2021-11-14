@@ -18,7 +18,9 @@ export const CityQueryWrapper: React.FC<CityQueryWrapperProps> = ({}) => {
       return <Dashboard coord={data?.coord} />;
    }
    if (data?.cod == 404) {
-      setTimeout(() => setCity(getStoredCity() ? getStoredCity() : 'New York'), 1000);
+      setTimeout(() => {
+         setCity(getStoredCity() ? getStoredCity() : 'New York');
+      }, 1000);
       return (
          <>
             <h1 className='absolute z-20 text-6xl text-gray-500 text-center w-full my-24 cursor-wait'>
