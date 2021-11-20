@@ -18,7 +18,7 @@ export const Card: React.FC<CardProps> = ({ weatherToday, timezone }) => {
             src={iconURL + weatherToday.weather[0].icon + '.png'}
          />
          <div className='flex flex-row sm:flex-col pb-1 justify-evenly'>
-            <div className='text-center'>{moment.unix(weatherToday.dt).format('dddd')}</div>
+            <div className='text-center'>{moment.unix(weatherToday.dt).tz(timezone).format('dddd')}</div>
             <div className='text-center'>
                <div className=''>High: {Math.round(weatherToday.temp.max)}&deg;</div>
                <div className=''>Low: {Math.round(weatherToday.temp.min)}&deg;</div>

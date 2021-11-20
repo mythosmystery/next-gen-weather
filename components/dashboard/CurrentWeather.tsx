@@ -25,7 +25,7 @@ export const CurrentWeather: React.FC<CurrentWeatherProps> = ({ current, timezon
             </div>
             <div className='flex flex-col flex-grow gap-4'>
                <div>Sunrise: {moment.unix(current.sunrise).tz(timezone).format('h:mm a')}</div>
-               <div>Sunset: {moment.unix(current.sunset).format('h:mm a')}</div>
+               <div>Sunset: {moment.unix(current.sunset).tz(timezone).format('h:mm a')}</div>
                <div>UVI: {current.uvi}</div>
                <div>Air Pressure: {current.pressure}</div>
             </div>
