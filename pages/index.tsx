@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import { useContext, useState } from 'react';
 import { AppContext } from '../components/AppContext';
 import { Sidebar } from '../components/sidebar/Sidebar';
@@ -12,10 +11,6 @@ export default function Home() {
    const [showModal, setShowModal] = useState(true);
    return (
       <div className={dark ? 'dark' : ''}>
-         <Head>
-            <title>Weather Dashboard</title>
-            <link rel='icon' href='/favicon.ico' />
-         </Head>
          <div className='fixed z-50 top-1 left-1'>
             <motion.button
                initial={{ opacity: 0, rotate: 0, y: -100 }}
