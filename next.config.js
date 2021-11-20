@@ -1,6 +1,7 @@
 const withPWA = require('next-pwa');
-const { __basepath__ } = require('./pages/_document');
 const isProd = process.env.NODE_ENV === 'production';
+
+const __basepath__ = '/next-gen-weather';
 
 /**
  * @type {import('next').NextConfig}

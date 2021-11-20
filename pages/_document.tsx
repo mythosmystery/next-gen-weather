@@ -1,5 +1,7 @@
 import Document, { DocumentContext, Html, Head, Main, NextScript } from 'next/document';
-export const __basepath__ = '/next-gen-weather';
+
+const __basepath__ = '/next-gen-weather';
+
 class MyDocument extends Document {
    static async getInitialProps(ctx: DocumentContext) {
       const initialProps = await Document.getInitialProps(ctx);
