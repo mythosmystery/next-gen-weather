@@ -1,5 +1,5 @@
 import Document, { DocumentContext, Html, Head, Main, NextScript } from 'next/document';
-
+export const __basepath__ = '/next-gen-weather';
 class MyDocument extends Document {
    static async getInitialProps(ctx: DocumentContext) {
       const initialProps = await Document.getInitialProps(ctx);
@@ -11,8 +11,8 @@ class MyDocument extends Document {
       return (
          <Html>
             <Head>
-               <link rel='icon' href='/favicon.ico' />
-               <link rel='manifest' href='/manifest.json' />
+               <link rel='icon' href={__basepath__ + '/favicon.ico'} />
+               <link rel='manifest' href={__basepath__ + '/manifest.json'} />
                <meta name='mobile-web-app-capable' content='yes' />
             </Head>
             <body>

@@ -1,4 +1,5 @@
 const withPWA = require('next-pwa');
+const { __basepath__ } = require('./pages/_document');
 const isProd = process.env.NODE_ENV === 'production';
 
 /**
@@ -10,8 +11,8 @@ module.exports = withPWA({
       loader: 'imgix',
       path: isProd ? 'https://mythosmystery.github.io' : 'http://localhost:3000'
    },
-   assetPrefix: isProd ? '/next-gen-weather' : '',
-   basePath: isProd ? '/next-gen-weather' : '',
+   assetPrefix: isProd ? __basepath__ : '',
+   basePath: isProd ? __basepath__ : '',
    pwa: {
       dest: 'public'
    }
