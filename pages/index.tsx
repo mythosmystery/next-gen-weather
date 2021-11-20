@@ -5,12 +5,16 @@ import { FaSun, FaMoon, FaSearch } from 'react-icons/fa';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ModalBG } from '../components/searchModal/ModalBG';
 import { Dashboard } from '../components/dashboard/Dashboard';
+import Head from 'next/head';
 
 export default function Home() {
    const { dark, toggleDark } = useContext(AppContext);
    const [showModal, setShowModal] = useState(true);
    return (
       <div className={dark ? 'dark' : ''}>
+         <Head>
+            <title>Weather Dashboard</title>
+         </Head>
          <div className='fixed z-50 top-1 left-1'>
             <motion.button
                initial={{ opacity: 0, rotate: 0, y: -100 }}
