@@ -7,6 +7,7 @@
     "export": "next export"
   },
   "dependencies": {
+    "axios": "^0.24.0",
     "framer-motion": "^5.2.1",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.34",
@@ -14,7 +15,8 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
-    "react-query": "^3.32.1"
+    "react-query": "^3.32.1",
+    "swr": "^1.0.1"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.3.4",

@@ -1,16 +1,22 @@
 import 'tailwindcss/tailwind.css';
 import { AppProps } from 'next/app';
-import { QueryClientProvider, QueryClient } from 'react-query';
 import { AppContextProvider } from '../components/AppContext';
-
-const queryClient = new QueryClient();
+import { SWRConfig } from 'swr';
+import axios from 'axios';
 
 export default function MyApp({ Component, pageProps }: AppProps) {
    return (
-      <QueryClientProvider client={queryClient}>
+      <SWRConfig
+         value={{
+            fetcher: (url: string) => axios.get(url).then(res => res.data),
+            revalidateIfStale: false,
+            dedupingInterval: 1000 * 60 * 5,
+            refreshWhenHidden: false
+         }}
+      >
          <AppContextProvider>
             <Component {...pageProps} />
          </AppContextProvider>
-      </QueryClientProvider>
+      </SWRConfig>
    );
 }

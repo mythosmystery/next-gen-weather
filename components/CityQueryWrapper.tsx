@@ -1,18 +1,15 @@
-import React, { useContext, useMemo } from 'react';
-import { getCurrentWeatherUrl } from '../utils/api';
+import React, { useContext } from 'react';
 import { getStoredCity } from '../utils/localStorage';
-import { CoordQueryData } from '../utils/types';
-import { useFetch } from '../utils/useFetch';
 import { AppContext } from './AppContext';
 import { Dashboard } from './dashboard/Dashboard';
 import { Loading } from './Loading';
+import { useCoord } from '../utils/useCoordQuery';
 
 interface CityQueryWrapperProps {}
 
 export const CityQueryWrapper: React.FC<CityQueryWrapperProps> = ({}) => {
    const { city, setCity } = useContext(AppContext);
-   const url = useMemo(() => getCurrentWeatherUrl(city), [city]);
-   const { data } = useFetch<CoordQueryData>(url);
+   const { data } = useCoord(city);
    console.log(data);
    if (data?.coord) {
       return <Dashboard coord={data?.coord} />;

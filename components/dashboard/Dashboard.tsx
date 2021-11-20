@@ -1,8 +1,7 @@
 import { AnimateSharedLayout, motion } from 'framer-motion';
 import React from 'react';
-import { getForecastUrl } from '../../utils/api';
-import { CurrentWeatherType, ForecastType } from '../../utils/types';
-import { useFetch } from '../../utils/useFetch';
+import { CurrentWeatherType } from '../../utils/types';
+import { useWeather } from '../../utils/useWeatherQuery';
 import Forecast from '../forecast/Forecast';
 import { Loading } from '../Loading';
 import { CurrentWeather } from './CurrentWeather';
@@ -15,7 +14,7 @@ interface DashboardProps {
 }
 
 export const Dashboard: React.FC<DashboardProps> = ({ coord }) => {
-   const { data, error, loading } = useFetch<ForecastType>(getForecastUrl(coord));
+   const { data, error, loading } = useWeather(coord);
 
    if (error) {
       return (
@@ -29,7 +28,6 @@ export const Dashboard: React.FC<DashboardProps> = ({ coord }) => {
       return <Loading />;
    }
    console.log(data);
-   data?.daily.shift();
    return (
       <AnimateSharedLayout>
          <motion.div
