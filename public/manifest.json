@@ -1,0 +1,12 @@
+{
+    "name": "Next Gen Weather",
+    "short_name": "Weather",
+    "icons": [
+     
+    ],
+    "theme_color": "#FFFFFF",
+    "background_color": "#FFFFFF",
+    "start_url": "/",
+    "display": "standalone",
+    "orientation": "landscape"
+  }
