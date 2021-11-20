@@ -7,7 +7,7 @@ interface Coord {
    lon: number;
 }
 
-export const useWeather = (coord: Coord) => {
-   const { data, error } = useSWR<ForecastType>(getForecastUrl(coord));
+export const useWeather = (coord: Coord | null) => {
+   const { data, error } = useSWR<ForecastType>(coord ? getForecastUrl(coord) : null);
    return { data, error, loading: !data && !error };
 };

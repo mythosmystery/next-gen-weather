@@ -4,8 +4,8 @@ import { AppContext } from '../components/AppContext';
 import { Sidebar } from '../components/sidebar/Sidebar';
 import { FaSun, FaMoon, FaSearch } from 'react-icons/fa';
 import { AnimatePresence, motion } from 'framer-motion';
-import { CityQueryWrapper } from '../components/CityQueryWrapper';
 import { ModalBG } from '../components/searchModal/ModalBG';
+import { Dashboard } from '../components/dashboard/Dashboard';
 
 export default function Home() {
    const { dark, toggleDark } = useContext(AppContext);
@@ -46,10 +46,10 @@ export default function Home() {
                </button>
             </motion.button>
          </div>
-         <div className='absolute z-30 overflow-x-hidden grid grid-cols-1 lg:grid-cols-4 grid-flow-row h-screen w-full p-4 gap-4'>
+         <div className='absolute z-30 overflow-x-hidden grid grid-cols-1 lg:grid-cols-4 grid-flow-row max-h-full w-full p-4 gap-4'>
             <AnimatePresence>
                <Sidebar key={1} />
-               <CityQueryWrapper key={2} />
+               <Dashboard key={2} />
                <ModalBG key={3} show={showModal} handleClose={() => setShowModal(false)} />
             </AnimatePresence>
          </div>

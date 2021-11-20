@@ -1,25 +1,30 @@
 import { AnimateSharedLayout, motion } from 'framer-motion';
-import React from 'react';
+import React, { useContext } from 'react';
+import { getStoredCity } from '../../utils/localStorage';
 import { CurrentWeatherType } from '../../utils/types';
+import { useCoord } from '../../utils/useCoordQuery';
 import { useWeather } from '../../utils/useWeatherQuery';
+import { AppContext } from '../AppContext';
 import Forecast from '../forecast/Forecast';
 import { Loading } from '../Loading';
 import { CurrentWeather } from './CurrentWeather';
 
-interface DashboardProps {
-   coord: {
-      lat: number;
-      lon: number;
-   };
-}
+interface DashboardProps {}
 
-export const Dashboard: React.FC<DashboardProps> = ({ coord }) => {
-   const { data, error, loading } = useWeather(coord);
+export const Dashboard: React.FC<DashboardProps> = () => {
+   const { city, setCity } = useContext(AppContext);
+   const { data: coordData, error } = useCoord(city);
+   const { data, loading } = useWeather(coordData?.coord ? coordData.coord : null);
 
    if (error) {
+      setTimeout(() => {
+         setCity(getStoredCity() ? getStoredCity() : 'New York');
+      }, 1000);
       return (
          <>
-            <h1 className='absolute z-20 text-6xl text-gray-500 text-center w-full my-24 cursor-wait'>Error</h1>
+            <h1 className='absolute z-20 text-6xl text-gray-500 text-center w-full my-24 cursor-wait'>
+               Error <p className='text-3xl'>{error.message}</p>
+            </h1>
             <div className='absolute z-0 top-0 lef-0 w-screen h-screen bg-gray-800 cursor-wait'></div>
          </>
       );
