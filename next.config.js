@@ -19,6 +19,7 @@ module.exports = withPWA({
       dest: 'public',
       runtimeCaching,
       register: true,
-      skipWaiting: true
+      skipWaiting: true,
+      buildExcludes: [/middleware-manifest.json$/]
    }
 });
