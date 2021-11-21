@@ -13,7 +13,7 @@ class MyDocument extends Document {
       return (
          <Html>
             <Head>
-               <link rel='icon' href={__basepath__ + '/favicon.ico'} />
+               <link rel='icon' href={__basepath__ + '/weather.png'} />
                <link rel='manifest' href={__basepath__ + '/manifest.json'} />
                <meta name='mobile-web-app-capable' content='yes' />
             </Head>
