@@ -17,7 +17,6 @@ module.exports = withPWA({
    basePath: isProd ? __basepath__ : '',
    pwa: {
       dest: 'public',
-      runtimeCaching,
-      publicExcludes: ['!robots.txt', '!sitemap.xml.gz', '!middleware-manifest.json']
+      runtimeCaching
    }
 });
