@@ -3,7 +3,7 @@
     "short_name": "Weather",
     "icons": [
      {
-         "src": "/next-gen-weather/weather.png",
+         "src": "/weather.png",
          "size": "256x256",
          "type": "image/png",
          "purpose": "any"
