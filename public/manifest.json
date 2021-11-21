@@ -3,10 +3,10 @@
     "short_name": "Weather",
     "icons": [
      {
-         "src": "/weather.png",
+         "src": "/next-gen-weather/weather.png",
          "size": "256x256",
          "type": "image/png",
-         "purpose": "any"
+         "purpose": "any maskable"
      }
     ],
     "theme_color": "#FFFFFF",
