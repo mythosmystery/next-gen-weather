@@ -1,4 +1,5 @@
 const withPWA = require('next-pwa');
+const runtimeCaching = require('next-pwa/cache');
 const isProd = process.env.NODE_ENV === 'production';
 
 const __basepath__ = '/next-gen-weather';
@@ -15,6 +16,7 @@ module.exports = withPWA({
    assetPrefix: isProd ? __basepath__ : '',
    basePath: isProd ? __basepath__ : '',
    pwa: {
-      dest: 'public'
+      dest: 'public',
+      runtimeCaching
    }
 });
