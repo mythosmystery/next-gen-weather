@@ -17,6 +17,8 @@ module.exports = withPWA({
    basePath: isProd ? __basepath__ : '',
    pwa: {
       dest: 'public',
-      runtimeCaching
+      runtimeCaching,
+      register: true,
+      skipWaiting: true
    }
 });
