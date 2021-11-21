@@ -15,7 +15,6 @@ module.exports = withPWA({
    assetPrefix: isProd ? __basepath__ : '',
    basePath: isProd ? __basepath__ : '',
    pwa: {
-      dest: 'public',
-      sw: __basepath__ + '/sw.js'
+      dest: 'public'
    }
 });
