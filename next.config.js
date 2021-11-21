@@ -2,7 +2,7 @@ const withPWA = require('next-pwa');
 const runtimeCaching = require('next-pwa/cache');
 const isProd = process.env.NODE_ENV === 'production';
 
-const __basepath__ = '';
+const __basepath__ = '/next-gen-weather';
 
 /**
  * @type {import('next').NextConfig}
@@ -18,6 +18,8 @@ module.exports = withPWA({
    pwa: {
       dest: 'public',
       runtimeCaching,
-      buildExcludes: [/middleware-manifest.json$/]
+      buildExcludes: [/middleware-manifest.json$/],
+      register: true,
+      skipWaiting: true
    }
 });

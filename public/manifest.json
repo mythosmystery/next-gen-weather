@@ -5,8 +5,8 @@
   "background_color": "#004740",
   "display": "fullscreen",
   "orientation": "portrait",
-  "scope": "/",
-  "start_url": "/",
+  "scope": "/next-gen-weather",
+  "start_url": "/next-gen-weather",
   "icons": [
     {
       "src": "icons/icon-72x72.png",

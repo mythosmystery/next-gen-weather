@@ -5,7 +5,7 @@ import { SWRConfig } from 'swr';
 import axios from 'axios';
 import Head from 'next/head';
 
-const __basepath__ = '';
+const __basepath__ = '/next-gen-weather';
 
 export default function MyApp({ Component, pageProps }: AppProps) {
    return (
