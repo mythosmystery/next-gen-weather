@@ -45,7 +45,7 @@ export default function Home() {
                </button>
             </motion.button>
          </div>
-         <div className='absolute z-30 overflow-x-hidden grid grid-cols-1 lg:grid-cols-4 grid-flow-row max-h-full w-full p-4 gap-4'>
+         <div className='absolute z-30 scrollbar-hide overflow-x-hidden grid grid-cols-1 lg:grid-cols-4 grid-flow-row max-h-full w-full p-4 gap-4'>
             <AnimatePresence>
                <Sidebar key={1} />
                <Dashboard key={2} />
