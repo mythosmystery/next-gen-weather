@@ -18,6 +18,6 @@ module.exports = withPWA({
    pwa: {
       dest: 'public',
       runtimeCaching,
-      publicExcludes: ['!robots.txt', '!sitemap.xml.gz']
+      publicExcludes: ['!robots.txt', '!sitemap.xml.gz', '!middleware-manifest.json']
    }
 });
